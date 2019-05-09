@@ -1,0 +1,221 @@
+\documentclass[12pt,Bold,letterpaper,TexShade]{mcgilletdclass}
+\usepackage{graphicx}
+\usepackage{times}
+\usepackage{subfig}
+\usepackage{longtable}
+\usepackage{natbib}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{adjustbox}
+\usepackage{setspace}
+\usepackage{multirow}
+\usepackage{adjustbox}
+\usepackage{enumitem}
+\usepackage{rotating}
+\usepackage{lipsum,lineno} % for placeholder text
+
+% remove section numbering without using section* (keeps in TOC)
+\setcounter{secnumdepth}{1}
+
+% % for PDF/A
+% \usepackage{hyperref}
+% \hypersetup{
+%     colorlinks=true,
+%     linkcolor=black,
+%     filecolor=black,      
+%     urlcolor=blue,
+%     citecolor=black
+% }
+% \usepackage[a-1b]{pdfx}
+
+% Reduce number of words breaking over lines
+\hyphenpenalty=1000
+
+% Cross-referencing
+\usepackage{xr}
+\externaldocument{"chap_1"}
+\externaldocument{"appendix_1"}
+
+% May or may not be necessary to have separate bibliographies per chapter
+% McGill requirements ask for it, but others did not do so
+% https://engineering.purdue.edu/~mark/puthesis/faq/chapter-bibliographies/
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Have you configured your TeX system for proper  %%
+%% page alignment? See the McGillETD documentation %%
+%% for two methods that can be used to control     %%
+%% page alignment. One method is demonstrated      %%
+%% below. See documentation and the ufalign.tex    %%
+%% file for instructions on how to adjust these    %%
+%% parameters.                                     %%
+\addtolength{\hoffset}{0pt}                        %%
+\addtolength{\voffset}{0pt}                        %%
+%%                                                 %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%       Define student-specific info
+
+\SetTitle{\huge{EXAMPLE THESIS TEMPLATE \\ FOR MCGILL UNIVERSITY}}%
+
+\SetAuthor{\large{\textit{A. Student}}}%
+\SetDegreeType{Doctor of Philosophy\vspace{0cm}}%
+\SetDepartment{Department of Biology\vspace{-2.1cm}}%
+\SetUniversity{McGill University}%
+\SetUniversityAddr{Montreal, Quebec}%
+\SetThesisDate{2018-11-20}%
+\SetRequirements{A thesis submitted to McGill University in partial fulfillment \\of the requirements of the degree of Doctor of Philosophy}%
+
+\SetCopyright{\textcopyright A. Student, 2018 \\ All rights reserved}%
+
+%% Input any special commands below
+\listfiles
+\begin{document}
+
+\maketitle
+
+\frontmatter
+
+\begin{romanPagenumber}{2}%
+\TOCHeading{\MakeUppercase{Table of Contents}}%
+\LOTHeading{{List of Tables}}%
+\LOFHeading{{List of Figures}}%
+\tableofcontents %
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%         Dedication                         %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\SetDedicationName{{Dedication}}%
+\SetDedicationText{To Oscar}%
+\Dedication%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%         English Abstract                        %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\SetAbstractEnName{{Abstract}}%
+\SetAbstractEnText{\lipsum[66]}
+
+\AbstractEn%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%         French Abstract                         %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\SetAbstractFrName{{Abr\'{e}g\'{e}}}%
+\SetAbstractFrText{\lipsum[66]}%
+\AbstractFr%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%         Acknowledgements                   %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\SetAcknowledgeName{{Acknowledgements}}%
+% Among other acknowledgements, the student is required to declare the extent to which assistance (paid or unpaid) has been given by members of staff, fellow students, research assistants, technicians, or others in the collection of materials and data, the design and construction of apparatus, the performance of experiments, the analysis of data, and the preparation of the thesis (including editorial help).
+% In addition, it is appropriate to recognize the supervision and advice given by the thesis supervisor(s) and advisors.
+\SetAcknowledgeText{%
+\noindent \lipsum[66]
+}%
+\Acknowledge%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%        Contribution to original knowledge      %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\SetContribKnowledgeName{{Contribution to Original Knowledge}}
+\SetContribKnowledgeText{\lipsum[66]
+}%
+\ContribKnowledge%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%       THESIS FORMAT AND STYLE       %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\SetLinkName{{Thesis Format}}%
+\SetLinkText{This thesis is written in a manuscript-based format. Throughout I use the Chicago citation style. 
+\\
+\\
+\textbf{Chapter 1:} Student, A. Supervisor, B. (2013), My First Chapter Title \textit{Journal of Ecographic Informatics} 10 (1), 878887.
+\\
+\\
+}
+\Link%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%        Contribution of Authors                 %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% A doctoral thesis must clearly state the elements of the thesis that are considered original scholarship and distinct contributions to knowledge.
+% Contributions of the student to each chapter must be explicitly stated.
+% Contributions of any co-authors to each chapter must be explicitly stated.
+\SetContribAuthorsName{{Contribution of Authors}}
+\SetContribAuthorsText{\noindent
+I am the first author for all chapters and the appendix in this
+thesis.
+\\
+\\
+\textbf{Chapter 1:}
+I wrote the manuscript with input from my supervisor.
+\\
+\\
+}%
+\ContribAuthors%
+
+\listoffigures %
+\listoftables %
+
+\end{romanPagenumber}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%        General Introduction                     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Clearly state the rationale and objectives of the research.
+\newcommand*{\SetIntroName}[1]{\renewcommand*{\ETDIntroName}{#1}}%
+\newcommand*{\ETDIntroName}{IntroMENTS}%
+\newcommand*{\SetIntroText}[1]{\renewcommand*{\ETDIntroText}{#1}}%
+\newcommand*{\ETDIntroText}{Intro text goes here!}%
+\newcommand{\Intro}{%
+    \begin{simpleenv}{}{}{}{}%
+    \pagestyle{plain}%
+    \setboolean{SetDSpace}{false}%
+    \GoSingle%
+    \begin{QZ@Cent}%
+          \bfseries{\ETDIntroName} 
+      \end{QZ@Cent}%
+    \vspace*{0.5in}
+      \par%
+      \GoDouble%
+      %\chapter*{\ETDIntroName}%
+      \addcontentsline{toc}{extrachapter}{\ETDIntroName}%
+      \ETDIntroText%
+    \end{simpleenv}%
+    \setboolean{SetDSpace}{true}}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Introduction
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\SetIntroName{{General Introduction}}
+\SetIntroText{%
+Infectious diseases are responsible for severe health burdens in humans, domesticated animals, and wildlife around the globe \citep{Hotez2014}.}%
+\Intro
+
+%  Chapter I 
+\include{chap_1}
+
+\SetLinkName{{Linking Statement 1}}
+\SetLinkText{In Chapter I, I did this, in Chapter II I did that.}
+\Link
+
+% General Discussion
+% \include{discussion}
+\SetLinkName{{General Discussion \& Conclusion}}%
+% In case of a manuscript-based thesis the comprehensive discussion should encompass all of the chapters of the thesis and should not be a repetition of the individual chapters.
+\SetLinkText{\lipsum
+}%
+\Link%
+
+\chapter{Appendix}
+\include{appendix_1}
+
+\ETDAppendix{References}{
+\bibHeading{}
+\bibliography{mcgilletd}
+}
+\bibliographystyle{chicago}	
+
+}
+\end{document}
